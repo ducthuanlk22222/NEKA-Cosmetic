@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\themes\less\oregional\" />
+    <Compile Remove="wwwroot\themes\**" />
+    <Content Remove="wwwroot\themes\**" />
+    <EmbeddedResource Remove="wwwroot\themes\**" />
+    <None Remove="wwwroot\themes\**" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,51 +4,69 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var culture = CultureInfo.CurrentCulture.Name;
 }
-<ul class="breadcrumb">
-    <li><a href="/">Home</a> <span class="divider">/</span></li>
-    <li class="active">Login</li>
-</ul>
-<h3> Login</h3>
-<hr class="soft" />
+@{
+    ViewData["Title"] = "Login";
+}
 
-<div class="row">
-    <div class="span4">
-        <div class="well">
-            <h5>CREATE YOUR ACCOUNT</h5><br />
-            Enter your e-mail address to create an account.<br /><br /><br />
-            <form action="register.html">
+<section class="h-100 gradient-form" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="card-body p-md-5 mx-md-4">
 
-                <div class="controls">
-                    <a href="/@culture/Account/Register" class="btn block">Create Your Account</a>
+                                <div class="text-center">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                                         style="width: 185px;" alt="logo">
+                                    <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
+                                </div>
+
+                                <form action="/@culture/Account/Login" method="post">
+                                    <p>Please login to your account</p>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="email" class="form-control"
+                                               placeholder="Phone number or email address" />
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="form2Example22" class="form-control" />
+                                       
+                                    </div>
+
+                                    <div class="text-center pt-1 mb-5 pb-1">
+                                        <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">
+                                            Log
+                                            in
+                                        </button>
+                                        <a class="text-muted" href="#!">Forgot password?</a>
+                                    </div>
+
+                                    <div class="d-flex align-items-center justify-content-center pb-4">
+                                        <p class="mb-0 me-2 pr-3">Don't have an account?</p>
+                                        <button type="button" class="btn btn-outline-danger">Create new</button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                            <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                <h4 class="mb-4">We are more than just a company</h4>
+                                <p class="small mb-0">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-    <div class="span1"> &nbsp;</div>
-    <div class="span4">
-        <div class="well">
-            <h5>ALREADY REGISTERED ?</h5>
-            <form action="/@culture/Account/Login" method="post">
-                <div class="control-group">
-                    <label class="control-label" for="inputEmail1">Email</label>
-                    <div class="controls">
-                        <input class="span3" type="text" asp-for="UserName" placeholder="Email">
-                        <span asp-validation-for="UserName" class="text-error"></span>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="inputPassword1">Password</label>
-                    <div class="controls">
-                        <input type="password" class="span3" asp-for="Password" placeholder="Password">
-                        <span asp-validation-for="Password" class="text-error"></span>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div class="controls">
-                        <button type="submit" class="btn">Sign in</button> <a href="forgetpass.html">Forget password?</a>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>	
+</section>

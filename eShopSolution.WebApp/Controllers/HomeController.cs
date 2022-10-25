@@ -27,7 +27,6 @@ namespace eShopSolution.WebApp.Controllers
             IProductApiClient productApiClient)
         {
             _logger = logger;
-            _slideApiClient = slideApiClient;
             _productApiClient = productApiClient;
         }
 
@@ -36,9 +35,7 @@ namespace eShopSolution.WebApp.Controllers
             var culture = CultureInfo.CurrentCulture.Name;
             var viewModel = new HomeViewModel
             {
-                Slides = await _slideApiClient.GetAll(),
                 FeaturedProducts = await _productApiClient.GetFeaturedProducts(culture, SystemConstants.ProductSettings.NumberOfFeaturedProducts),
-                LatestProducts = await _productApiClient.GetLatestProducts(culture, SystemConstants.ProductSettings.NumberOfLatestProducts),
             };
 
             return View(viewModel);

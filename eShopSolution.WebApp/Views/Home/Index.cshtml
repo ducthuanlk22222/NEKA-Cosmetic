@@ -1,105 +1,125 @@
 ﻿@model HomeViewModel
-@using eShopSolution.ViewModels.Catalog.Products;
-@inject LazZiya.ExpressLocalization.ISharedCultureLocalizer _loc;
-@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
-@{
-    var culture = CultureInfo.CurrentCulture.Name;
-}
 @{
     ViewData["Title"] = "Home Page";
 }
-@section slider{
-    <div id="carouselBlk">
-        <div id="myCarousel" class="carousel slide">
-            <div class="carousel-inner">
-                @for (int index = 0; index < Model.Slides.Count; index++)
-                {
-                    var slide = Model.Slides[index];
-                    <div class="item @(index == 0?"active":"")">
-                        <div class="container">
-                            <a href="@slide.Url"><img style="width:100%" src="@slide.Image" alt="@slide.Name" /></a>
-                            <div class="carousel-caption">
-                                <h4>@slide.Name</h4>
-                                <p>@slide.Description</p>
-                            </div>
-                        </div>
+@section hero{
+    <div class="site-blocks-cover" style="background-image: url(images/hero_1.jpg);" data-aos="fade">
+        <div class="container">
+            <div class="row align-items-start align-items-md-center justify-content-end">
+                <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
+                    <h1 class="mb-2">Finding Your Perfect Shoes</h1>
+                    <div class="intro-text text-center text-md-left">
+                        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla. </p>
+                        <p>
+                            <a href="#" class="btn btn-sm btn-primary">Shop Now</a>
+                        </p>
                     </div>
-                }
+                </div>
             </div>
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+        </div>
+    </div>
+
+    <div class="site-section site-section-sm site-blocks-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="">
+                    <div class="icon mr-4 align-self-start">
+                        <span class="icon-truck"></span>
+                    </div>
+                    <div class="text">
+                        <h2 class="text-uppercase" localize-content>Free Shipping</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon mr-4 align-self-start">
+                        <span class="icon-refresh2"></span>
+                    </div>
+                    <div class="text">
+                        <h2 class="text-uppercase" localize-content>Free Returns</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon mr-4 align-self-start">
+                        <span class="icon-help"></span>
+                    </div>
+                    <div class="text">
+                        <h2 class="text-uppercase" localize-content>Customer Support</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Category*@
+    <div class="site-section site-blocks-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
+                    <a class="block-2-item" href="#">
+                        <figure class="image">
+                            <img src="images/women.jpg" alt="" class="img-fluid">
+                        </figure>
+                        <div class="text">
+                            <span class="text-uppercase">Collections</span>
+                            <h3>Women</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
+                    <a class="block-2-item" href="#">
+                        <figure class="image">
+                            <img src="images/children.jpg" alt="" class="img-fluid">
+                        </figure>
+                        <div class="text">
+                            <span class="text-uppercase">Collections</span>
+                            <h3>Children</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
+                    <a class="block-2-item" href="#">
+                        <figure class="image">
+                            <img src="images/men.jpg" alt="" class="img-fluid">
+                        </figure>
+                        <div class="text">
+                            <span class="text-uppercase">Collections</span>
+                            <h3>Men</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 }
-<div class="well well-small">
-    <h4><localize>Featured Products</localize> <small class="pull-right">200+ featured products</small></h4>
-    <div class="row-fluid">
-        <div id="featured" class="carousel slide">
-            <div class="carousel-inner">
-                @{
-                    List<List<ProductVm>> featuredProducts = new List<List<ProductVm>>();
-                    List<ProductVm> featuredPart = new List<ProductVm>();
-                }
-
-                @for (int index = 0; index < Model.FeaturedProducts.Count; index++)
-                {
-                    featuredPart.Add(Model.FeaturedProducts[index]);
-                    if (featuredPart.Count == 4 || Model.FeaturedProducts.Count < 4)
-                    {
-                        featuredProducts.Add(featuredPart);
-                        featuredPart = new List<ProductVm>();
-                    }
-
-                }
-                @for (int index = 0; index < featuredProducts.Count; index++)
-                {
-                    <div class="item @(index == 0?"active":"")">
-                        <ul class="thumbnails">
-                            @foreach (var item in featuredProducts[index])
-                            {
-                                var url = $"/{culture}/{_loc["productUrl"]}/{item.Id}";
-                                <li class="span3">
-                                    <div class="thumbnail">
-                                        <i class="tag"></i>
-                                        <a href="@url"><img src="@(Configuration["BaseAddress"] + item.ThumbnailImage)" alt="@item.Name"></a>
-                                        <div class="caption">
-                                            <h5>@item.Name</h5>
-                                            <h4><a class="btn" href="" localize-content>VIEW</a> <span class="pull-right">@item.Price.ToString()</span></h4>
-                                        </div>
-                                    </div>
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                }
+    <div class="site-section block-3 site-blocks-2 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-7 site-section-heading text-center pt-4">
+                    <h2 localize-content>Featured Products</h2>
+                </div>
             </div>
-            <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
-            <a class="right carousel-control" href="#featured" data-slide="next">›</a>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nonloop-block-3 owl-carousel">
+                    @foreach (var item in Model.FeaturedProducts)
+                    {
+                        <div class="item">
+                            <div class="block-4 text-center">
+                                <figure class="block-4-image">
+                                    <img src="@item.ThumbnailImage" alt="@item.Name" class="img-fluid">
+                                </figure>
+                                <div class="block-4-text p-4">
+                                    <h3><a asp-controller="Product" asp-action="Detail">@item.Name</a></h3>
+                                    <p class="mb-0">@item.Description</p>
+                                    <p class="text-primary font-weight-bold">@item.Price $</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<h4 localize-content>Latest Products</h4>
-<ul class="thumbnails">
-    @foreach (var item in Model.LatestProducts)
-    {
-        var url = $"/{culture}/{_loc["productUrl"]}/{item.Id}";
-        <li class="span3">
-            <div class="thumbnail">
-                <a href="@url"><img src="@(Configuration["BaseAddress"] + item.ThumbnailImage)" alt="@item.Name" /></a>
-                <div class="caption">
-                    <h5>@item.Name</h5>
-                    <p>
-                        @item.Description
-                    </p>
-
-                    <h4 style="text-align:center">
-                        <a class="btn" href="@url">
-                            <i class="icon-zoom-in"></i>
-                        </a> <a class="btn btn-add-cart" data-id="@item.Id" href="#"><localize>Add to</localize> <i class="icon-shopping-cart"></i></a>
-                        <a class="btn btn-primary" href="#">@item.Price</a>
-                    </h4>
-                </div>
-            </div>
-        </li>
-    }
-</ul>

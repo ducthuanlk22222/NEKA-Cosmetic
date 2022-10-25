@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using eShopSolution.ApiIntegration;
+using eShopSolution.Utilities.Constants;
 using eShopSolution.ViewModels.Catalog.Products;
 using eShopSolution.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -22,27 +24,22 @@ namespace eShopSolution.WebApp.Controllers
 
         public async Task<IActionResult> Detail(int id, string culture)
         {
-            var product = await _productApiClient.GetById(id, culture);
-            return View(new ProductDetailViewModel()
-            {
-                Product = product
-            });
+            //var product = await _productApiClient.GetById(id, culture);
+            //return View(new ProductDetailViewModel()
+            //{
+            //    Product = product
+            //});
+            return View();
         }
 
-        public async Task<IActionResult> Category(int id, string culture, int page = 1)
+        public async Task<IActionResult> Index()
         {
-            var products = await _productApiClient.GetPagings(new GetManageProductPagingRequest()
+            var culture = CultureInfo.CurrentCulture.Name;
+            var viewModel = new ProductViewModel()
             {
-                CategoryId = id,
-                PageIndex = page,
-                LanguageId = culture,
-                PageSize = 10
-            });
-            return View(new ProductCategoryViewModel()
-            {
-                Category = await _categoryApiClient.GetById(culture, id),
-                Products = products
-            }); ;
+                LatestProducts = await _productApiClient.GetLatestProducts(culture, SystemConstants.ProductSettings.NumberOfLatestProducts)
+            };
+            return View(viewModel);
         }
     }
 }
