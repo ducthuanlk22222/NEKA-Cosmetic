@@ -1,0 +1,40 @@
+﻿@model NavigationViewModel
+    <!-- Navbar-->
+    <section class="section">
+        <div class="card">
+            <div class="card-body">
+                <div style="display: flex; justify-content: flex-end !important; align-items: center;" class="avatar me-3">
+                    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                            <div class="input-group-append">
+                                <button class="btn" type="button"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="frmChangeLanguage" action="/Home/Language" method="post"
+                          class="">
+                        <input type="hidden" name="ReturnUrl" value="@Context.Request.Path" />
+                        <select class="form-control" onchange="this.form.submit()" asp-for="CurrentLanguageId"
+                                asp-items="Model.Languages">
+                        </select>
+                    </form>
+                     <div class="dropdown">
+                        <button class="btn dropdown" type="button"
+                            id="dropdownMenuButton" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img class="active" src="../assets/images/faces/avatar.jpg" alt="" srcset="">
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/Profile/Index">@User.Identity.Name</a>
+                                <a class="dropdown-item" href="#">Activity Log</a>
+                                <div class="dropdown-divider"></div>
+                                <form method="post" asp-controller="User" asp-action="Logout">
+                                    <button type="submit" class="dropdown-item">Đăng xuất</button>
+                                </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    
