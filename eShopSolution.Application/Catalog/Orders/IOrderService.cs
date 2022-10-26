@@ -1,4 +1,5 @@
 ﻿using eShopSolution.ViewModels.Catalog.Categories;
+using eShopSolution.ViewModels.Catalog.Orders;
 using eShopSolution.ViewModels.Common;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace eShopSolution.Application.Catalog.Orders
 {
     public interface IOrderService
     {
+        Task<OrderVm> GetUserId(string languageId, int id);
         //Task<PagedResult<CategoryVm>> GetAllPaging(GetManageCategoryPagingRequest request);
         //Task<List<CategoryVm>> GetAll(string languageId);
 
