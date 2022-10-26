@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,21 +23,24 @@ namespace eShopSolution.Application.Catalog.Carts
         private readonly EShopDbContext _context;
         private readonly IStorageService _storageService;
         private const string USER_CONTENT_FOLDER_NAME = "user-content";
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CartService(EShopDbContext context, IStorageService storageService)
+        public CartService(EShopDbContext context, IStorageService storageService, IHttpContextAccessor httpContextAccessor)
         {
+            _httpContextAccessor = httpContextAccessor; 
             _context = context;
             _storageService = storageService;
         }
+
         public async Task<int> Create(CartCreateRequest request)
         {
+            var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var cart = new Cart()
             {
                 Price = request.Price,
-                Product = request.Products,
                 Quantity = request.Quantity,
                 DateCreated = DateTime.Now,
-                UserId = request.AppUser.Id,
+                UserId = new Guid(userId)
             };
 
             _context.Carts.Add(cart);
@@ -54,13 +58,41 @@ namespace eShopSolution.Application.Catalog.Carts
             return await _context.SaveChangesAsync();
         }
 
+        public async Task<ApiResult<bool>> CategoryAssign(int id, CartAssignRequest request)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return new ApiErrorResult<bool>($"Giỏ hàng với id {id} không tồn tại");
+            }
+            foreach (var product in request.Products)
+            {
+                var productInCart = await _context.ProductInCarts
+                    .FirstOrDefaultAsync(x => x.ProductId == int.Parse(product.Id)
+                    && x.ProductId == id);
+                if (productInCart != null && product.Selected == false)
+                {
+                    _context.ProductInCarts.Remove(productInCart);
+                }
+                else if (productInCart == null && product.Selected)
+                {
+                    await _context.ProductInCarts.AddAsync(new ProductInCart()
+                    {
+                        CartId = id,
+                        ProductId = id
+                    });
+                }
+            }
+            await _context.SaveChangesAsync();
+            return new ApiSuccessResult<bool>();
+        }
         public async Task<PagedResult<CartVm>> GetAllPaging(GetCartPagingRequest request)
         {
             //1. Select join
             var query = from c in _context.Carts
-                        join ct in _context.Products on c.Id equals ct.Id 
-                        //join cu in _context.Users on c.Id equals cu.Id into ccu
-                        select new { c, ct };
+                        join ct in _context.ProductInCarts on c.Id equals ct.CartId 
+                        join cu in _context.ProductInCarts on c.Id equals cu.ProductId
+                        select new { c, ct, cu };
 
             //3. Paging
             int totalRow = await query.CountAsync();
@@ -70,7 +102,6 @@ namespace eShopSolution.Application.Catalog.Carts
                 .Select(x => new CartVm()
                 {
                     //Price = x.p.Price,
-                    //Products = x.pt.Id,
                     //Quantity = x.p.Quantity,
                     DateCreated = DateTime.Now,
                     //AppUser = x.cu,
@@ -96,10 +127,10 @@ namespace eShopSolution.Application.Catalog.Carts
             cart.Quantity = request.Quantity;
             cart.UserId = request.AppUser.Id;
             cart.Price = request.Price;
-            cart.ProductId = request.Products.Id;
 
             return await _context.SaveChangesAsync();
         }
+
 
     }
 }

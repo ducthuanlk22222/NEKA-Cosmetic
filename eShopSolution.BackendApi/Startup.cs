@@ -43,7 +43,7 @@ namespace eShopSolution.BackendApi
             services.AddIdentity<AppUser, AppRole>()
                 .AddEntityFrameworkStores<EShopDbContext>()
                 .AddDefaultTokenProviders();
-
+            services.AddHttpContextAccessor();
             //Declare DI
             services.AddTransient<IStorageService, FileStorageService>();
 

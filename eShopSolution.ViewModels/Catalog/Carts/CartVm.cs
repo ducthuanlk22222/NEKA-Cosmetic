@@ -13,7 +13,7 @@ namespace eShopSolution.ViewModels.Catalog.Carts
         public int Quantity { get; set; }
         public decimal Price { get; set; }
         public DateTime DateCreated { set; get; }
-        public Product Products { get; set; }
         public AppUser AppUser { get; set; }
+        public List<string> Product { get; set; } = new List<string>();
     }
 }
