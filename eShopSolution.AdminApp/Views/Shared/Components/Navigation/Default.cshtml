@@ -26,7 +26,7 @@
                             <img class="active" src="../assets/images/faces/avatar.jpg" alt="" srcset="">
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="/Profile/Index">@User.Identity.Name</a>
+                            <a class="dropdown-item" href="/Profile/Index"> ID: @User.Identity.Name</a>
                                 <a class="dropdown-item" href="#">Activity Log</a>
                                 <div class="dropdown-divider"></div>
                                 <form method="post" asp-controller="User" asp-action="Logout">

@@ -16,11 +16,12 @@ namespace eShopSolution.BackendApi.Controllers
     public class OrdersController : ControllerBase
     {
         private readonly IOrderService _categoryService;
-
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public OrdersController(
-            IOrderService categoryService)
+            IOrderService categoryService, IHttpContextAccessor httpContextAccessor)
         {
             _categoryService = categoryService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         //[HttpGet("paging")]
