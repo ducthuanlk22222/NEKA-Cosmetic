@@ -2,6 +2,11 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+@inject LazZiya.ExpressLocalization.ISharedCultureLocalizer _loc;
+@{
+    var culture = CultureInfo.CurrentCulture.Name;
+}
+
 @section hero{
     <div class="site-blocks-cover" style="background-image: url(images/hero_1.jpg);" data-aos="fade">
         <div class="container">
@@ -105,13 +110,14 @@
                     <div class="nonloop-block-3 owl-carousel">
                     @foreach (var item in Model.FeaturedProducts)
                     {
+                        var url = $"/{culture}/{_loc["productUrl"]}/{item.Id}";
                         <div class="item">
                             <div class="block-4 text-center">
                                 <figure class="block-4-image">
                                     <img src="@item.ThumbnailImage" alt="@item.Name" class="img-fluid">
                                 </figure>
                                 <div class="block-4-text p-4">
-                                    <h3><a asp-controller="Product" asp-action="Detail">@item.Name</a></h3>
+                                    <h3><a href="@url">@item.Name</a></h3>
                                     <p class="mb-0">@item.Description</p>
                                     <p class="text-primary font-weight-bold">@item.Price $</p>
                                 </div>
