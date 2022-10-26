@@ -24,7 +24,7 @@
 
 </head>
 <body>
-
+    <input type="hidden" id="hidCulture" value="@culture"/>
     <div class="site-wrap">
         @*Header*@
         <header class="site-navbar" role="banner">
@@ -56,7 +56,7 @@
                                     <li><a asp-controller="Account" asp-action="Login"><span class="icon icon-person"></span></a></li>
                                     <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                                     <li>
-                                        <a asp-controller="Cart" asp-action="Index" class="site-cart">
+                                        <a href="/@culture/Cart" class="site-cart">
                                             <span class="icon icon-shopping_cart"></span>
                                             <span class="count">2</span>
                                         </a>
@@ -163,6 +163,8 @@
     <script src="~/js/aos.js"></script>
 
     <script src="~/js/main.js"></script>
+    <script src="~/js/site.js"></script>
+    @RenderSection("scripts", required: false)
 
 </body>
 </html>

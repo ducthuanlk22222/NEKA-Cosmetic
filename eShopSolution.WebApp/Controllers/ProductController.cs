@@ -24,12 +24,12 @@ namespace eShopSolution.WebApp.Controllers
 
         public async Task<IActionResult> Detail(int id, string culture)
         {
-            //var product = await _productApiClient.GetById(id, culture);
-            //return View(new ProductDetailViewModel()
-            //{
-            //    Product = product
-            //});
-            return View();
+            var product = await _productApiClient.GetById(id, culture);
+            return View(new ProductDetailViewModel()
+            {
+                Product = product
+            });
+         
         }
 
         public async Task<IActionResult> Index()
