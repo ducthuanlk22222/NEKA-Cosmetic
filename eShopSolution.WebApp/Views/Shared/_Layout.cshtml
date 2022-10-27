@@ -53,7 +53,23 @@
                         <div class="col-6 col-md-4 order-3 order-md-3 text-right">
                             <div class="site-top-icons">
                                 <ul>
-                                    <li><a asp-controller="Account" asp-action="Login"><span class="icon icon-person"></span></a></li>
+                                   @if(User.Identity.IsAuthenticated){
+                                        <li class="has-children dropdown-toggle">
+                                            <a><span class="icon icon-person"></span></a>
+                                            <ul class="dropdown">
+                                                <li><a href="#">Your Profile</a></li>
+                                                <li>
+                                                    <form action="/@culture/Account/Logout" id="logoutForm" method="post">
+                                                        <button type="submit" style="all:unset; cursor: pointer" >Logout</button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                   }else {
+                                        <li><a asp-controller="Account" asp-action="Login"><span class="icon icon-person"></span></a></li>
+
+                                   }
                                     <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                                     <li>
                                         <a href="/@culture/Cart" class="site-cart">
