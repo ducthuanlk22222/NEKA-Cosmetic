@@ -35,12 +35,16 @@ namespace eShopSolution.Application.Catalog.Carts
         public async Task<int> Create(CartCreateRequest request)
         {
             var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var product = _context.ProductTranslations.Where(x => request.Product.Contains(x.Id)).Select(x=>x.Id).ToList();
+            var producta = _context.ProductInCarts.Where(x => product.Contains(x.ProductId)).ToList();
             var cart = new Cart()
             {
                 Price = request.Price,
                 Quantity = request.Quantity,
                 DateCreated = DateTime.Now,
-                UserId = new Guid(userId)
+                UserId = new Guid(userId),
+                ProductInCarts= producta
             };
 
             _context.Carts.Add(cart);

@@ -10,7 +10,7 @@ namespace eShopSolution.ViewModels.Catalog.Carts
     public class CartCreateRequest
     {
         public int Quantity { get; set; }
-        public List<string> Product { get; set; } = new List<string>();
+        public List<int> Product { get; set; } = new List<int>();
         public decimal Price { get; set; }
         public AppUser AppUser { get; set; }
     }

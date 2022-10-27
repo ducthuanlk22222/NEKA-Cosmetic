@@ -52,6 +52,10 @@ namespace eShopSolution.WebApp.Controllers
                 PhoneNumber = request.CheckoutModel.PhoneNumber,
                 OrderDetails = orderDetails
             };
+            
+
+
+
             //TODO: Add to API
             TempData["SuccessMsg"] = "Order puschased successful";
             return View(model);

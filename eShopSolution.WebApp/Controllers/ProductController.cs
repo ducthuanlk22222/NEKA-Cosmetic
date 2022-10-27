@@ -21,7 +21,7 @@ namespace eShopSolution.WebApp.Controllers
             _productApiClient = productApiClient;
             _categoryApiClient = categoryApiClient;
         }
-
+    
         public async Task<IActionResult> Detail(int id, string culture)
         {
             var product = await _productApiClient.GetById(id, culture);
@@ -29,7 +29,7 @@ namespace eShopSolution.WebApp.Controllers
             {
                 Product = product
             });
-         
+
         }
 
         public async Task<IActionResult> Index()

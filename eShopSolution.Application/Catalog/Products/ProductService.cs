@@ -203,7 +203,9 @@ namespace eShopSolution.Application.Catalog.Products
                                     select ct.Name).ToListAsync();
 
             var image = await _context.ProductImages.Where(x => x.ProductId == productId && x.IsDefault == true).FirstOrDefaultAsync();
-
+            string pathFile = "no-image.jpg";
+            if (image != null)
+                pathFile = image.ImagePath;
             var productViewModel = new ProductVm()
             {
                 Id = product.Id,
@@ -220,7 +222,7 @@ namespace eShopSolution.Application.Catalog.Products
                 Stock = product.Stock,
                 ViewCount = product.ViewCount,
                 Categories = categories,
-                ThumbnailImage = image != null ? image.ImagePath : "no-image.jpg"
+                ThumbnailImage = pathFile
             };
             return productViewModel;
         }
