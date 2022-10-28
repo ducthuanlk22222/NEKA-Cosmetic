@@ -15,11 +15,11 @@
         <strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
      </div>
      -->
-     <div class="alert alert-block alert-error fade in">
+    @* <div class="alert alert-block alert-error fade in">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <strong>lorem ipsum is simply</strong> dummy text of the printing and typesetting industry. lorem ipsum has been the industry's standard dummy text ever since the 1500s
-     </div> 
-    <div class="site-section block-3 site-blocks-2 bg-light">
+     </div> *@
+  
        @* <form asp-action="Register" asp-controller="Account" method="post" class="form-horizontal">
             <h4>Your personal information</h4>
             <div asp-validation-summary="All" class="text-error">
@@ -88,106 +88,105 @@
             </div>
         </form>
 *@
-        <section class="h-auto gradient-form">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col-xl-10">
-                        <div class="card rounded-3 text-black">
-                            <div class="row g-0">
-                                <div class="col-lg-6 gradient-custom-2">
+<section class="h-100 gradient-form" style="height: fit-content !important;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-6 gradient-custom-2">
 
-                                    <div class="card-body p-md-5 mx-md-4">
+                            <div class="card-body p-md-5 mx-md-4">
 
-                                        <div class="text-center">
-                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                                                 style="width: 185px;" alt="logo">
-                                            <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
-                                        </div>
-                                        <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                                            <h4 class="mb-4">We are more than just a company</h4>
-                                            <p class="small mb-0">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                            </p>
-                                        </div>
-                                       
+                                <div class="text-center">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                                         style="width: 185px;" alt="logo">
+                                    <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
+                                </div>
+                                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                    <h4 class="mb-4">We are more than just a company</h4>
+                                    <p class="small mb-0">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </p>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6 d-flex align-items-center">
+                            <div class="card-body p-md-5 mx-md-4">
+                                <form asp-action="Register" asp-controller="Account" method="post">
+                                    <p>Register your account</p>
+                                    <div class="form-outline">
+                                        <label for="FirstName">First Name <sup>*</sup></label>
+                                        <input type="text" asp-for="FirstName" placeholder="First Name" class="form-control" name="FirstName" />
+                                        <span asp-validation-for="FirstName" class="text-error"></span>
+                                    </div>
+
+                                    <div class="form-outline ">
+                                        <label for="LastName">Last Name <sup>*</sup></label>
+
+                                        <input type="text" class="form-control"
+                                               asp-for="LastName" placeholder="Last Name" name="LastName" />
+                                    </div>
+
+                                    <div class="form-outline ">
+                                        <label for="Email">Email <sup>*</sup></label>
+
+                                        <input type="email" class="form-control"
+                                               asp-for="Email" placeholder="Email" name="Email" />
+                                    </div>
+
+                                    <div class="form-outline">
+                                        <label for="UserName">Username <sup>*</sup></label>
+
+                                        <input type="text" class="form-control"
+                                               asp-for="UserName" placeholder="Username" name="UserName" />
+                                    </div>
+
+                                    <div class="form-outline">
+                                        <label for="Password">Password <sup>*</sup></label>
+
+                                        <input type="password" class="form-control" name="Password" asp-for="Password" placeholder="Password" />
 
                                     </div>
-                                
-                                </div>
 
-                            <div class="col-lg-6  d-flex align-items-center">
-                                <div class="card-body p-md-5 mx-md-4">
-                                    <form asp-action="Register" asp-controller="Account" method="post">
-                                        <p>Register your account</p>
-                                        <div class="form-outline mb-4">
-                                            <label for="FirstName">First Name <sup>*</sup></label>
-                                            <input type="text" asp-for="FirstName" placeholder="First Name" class="form-control" name="FirstName" />
-                                            <span asp-validation-for="FirstName" class="text-error"></span>
-                                        </div>
+                                    <div class="form-outline">
+                                        <label for="ConfirmPassword">Confirm Password <sup>*</sup></label>
 
-                                        <div class="form-outline mb-4">
-                                            <label for="LastName">Last Name <sup>*</sup></label>
+                                        <input type="password" class="form-control" name="ConfirmPassword" asp-for="ConfirmPassword" placeholder="Confirm Password" />
 
-                                            <input type="text" class="form-control"
-                                                   asp-for="LastName" placeholder="Last Name" name="LastName" />
-                                        </div>
+                                    </div>
+                                    <div class="form-outline">
+                                        <label for="PhoneNumber">Phone</label>
 
-                                        <div class="form-outline mb-4">
-                                            <label for="Email">Email <sup>*</sup></label>
+                                        <input type="text" class="form-control" name="PhoneNumber" asp-for="PhoneNumber" placeholder="Mobile Phone" />
 
-                                            <input type="email" class="form-control"
-                                                   asp-for="Email" placeholder="Email" name="Email" />
-                                        </div>
+                                    </div>
 
-                                        <div class="form-outline mb-4">
-                                            <label for="UserName">Username <sup>*</sup></label>
+                                    <p><sup>*</sup>Required field</p>
 
-                                            <input type="text" class="form-control"
-                                                   asp-for="UserName" placeholder="Username" name="UserName" />
-                                        </div>
+                                    <div class="text-center pt-1 mb-5 pb-1">
+                                        <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">
+                                            Register
+                                        </button>
 
-                                        <div class="form-outline mb-4">
-                                            <label for="Password">Password <sup>*</sup></label>
-
-                                            <input type="password" class="form-control" name="Password" asp-for="Password" placeholder="Password" />
-
-                                        </div>
-
-                                        <div class="form-outline mb-4">
-                                            <label for="ConfirmPassword">Confirm Password <sup>*</sup></label>
-
-                                            <input type="password" class="form-control" name="ConfirmPassword" asp-for="ConfirmPassword" placeholder="Confirm Password" />
-
-                                        </div>
-                                        <div class="form-outline mb-4">
-                                            <label for="PhoneNumber">Phone</label>
-
-                                            <input type="text" class="form-control" name="PhoneNumber" asp-for="PhoneNumber" placeholder="Mobile Phone" />
-
-                                        </div>
-
-                                        <p><sup>*</sup>Required field</p>
-
-                                        <div class="text-center pt-1 mb-5 pb-1">
-                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">
-                                                Register
-                                            </button>
-                                            
-                                        </div>
+                                    </div>
 
 
 
-                                    </form>
-                                </div>
-                                   
-                                    
-                                </div>
+                                </form>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
+</section>
