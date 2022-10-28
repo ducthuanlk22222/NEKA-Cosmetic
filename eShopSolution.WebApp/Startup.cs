@@ -143,7 +143,13 @@ namespace eShopSolution.WebApp
                       controller = "Product",
                       action = "Detail"
                   });
-
+                endpoints.MapControllerRoute(
+                 name: "Cart",
+                 pattern: "checkout/{id}", new
+                 {
+                     controller = "Product",
+                     action = "Category"
+                 });
                 endpoints.MapControllerRoute(
                      name: "default",
                      pattern: "{culture=vi}/{controller=Home}/{action=Index}/{id?}");

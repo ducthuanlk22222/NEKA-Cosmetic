@@ -1,6 +1,7 @@
 ﻿using eShopSolution.Application.Catalog.Carts;
 using eShopSolution.Application.Catalog.Orders;
 using eShopSolution.Application.Catalog.Products;
+using eShopSolution.Application.System.Users;
 using eShopSolution.Data.EF;
 using eShopSolution.ViewModels.Catalog.Carts;
 using eShopSolution.ViewModels.Catalog.ProductImages;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Build.Utilities;
+using System;
 using System.Threading.Tasks;
 
 namespace eShopSolution.BackendApi.Controllers
@@ -42,6 +44,7 @@ namespace eShopSolution.BackendApi.Controllers
                 return BadRequest(ModelState);
             }
             var cartID = await _cartService.Create(request);
+            
             if (cartID == 0)
                 return BadRequest();
 

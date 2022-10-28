@@ -17,7 +17,9 @@ namespace eShopSolution.Application.Catalog.Carts
         Task<int> Update(CartUpdateRequest request);
 
         Task<int> Delete(int cartID);
-        Task<ApiResult<bool>> CategoryAssign(int id, CartAssignRequest request);
+
+       
+        //Task<ApiResult<bool>> CategoryAssign(int id, CartAssignRequest request);
         Task<PagedResult<CartVm>> GetAllPaging(GetCartPagingRequest request);
     }
 }

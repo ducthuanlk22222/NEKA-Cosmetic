@@ -1,6 +1,7 @@
 ﻿using eShopSolution.ViewModels.Catalog.Carts;
 using eShopSolution.ViewModels.Catalog.Products;
 using eShopSolution.ViewModels.Common;
+using eShopSolution.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,6 @@ namespace eShopSolution.ApiIntegration
     {
         Task<PagedResult<CartVm>> GetPagings(GetCartPagingRequest request);
 
-        Task<bool> CreateCart(CartCreateRequest request);
-
-        Task<bool> UpdateCart(CartUpdateRequest request);
-
-        Task<bool> DeleteCart(int id);
+        //Task<ApiResult<UserVm>> GetById(Guid id);
     }
 }

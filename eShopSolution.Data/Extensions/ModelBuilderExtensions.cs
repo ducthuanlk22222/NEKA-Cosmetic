@@ -26,7 +26,7 @@ namespace eShopSolution.Data.Extensions
                 {
                     Id = 1,
                     IsShowOnHome = true,
-                    ParentId = null,
+                    ParentId = 1,
                     SortOrder = 1,
                     Status = Status.Active,
                 },
@@ -34,7 +34,7 @@ namespace eShopSolution.Data.Extensions
                  {
                      Id = 2,
                      IsShowOnHome = true,
-                     ParentId = null,
+                     ParentId = 2,
                      SortOrder = 2,
                      Status = Status.Active
                  });

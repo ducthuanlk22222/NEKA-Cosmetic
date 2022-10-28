@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using eShopSolution.ApiIntegration;
@@ -12,13 +11,17 @@ using Newtonsoft.Json;
 
 namespace eShopSolution.WebApp.Controllers
 {
+
     public class CartController : Controller
     {
+        
         private readonly IProductApiClient _productApiClient;
-
-        public CartController(IProductApiClient productApiClient)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public CartController(IProductApiClient productApiClient, IHttpContextAccessor contextAccessor)
         {
             _productApiClient = productApiClient;
+            _httpContextAccessor = contextAccessor;
+            
         }
 
         public IActionResult Index()
@@ -34,12 +37,14 @@ namespace eShopSolution.WebApp.Controllers
         [HttpPost]
         public IActionResult Checkout(CheckoutViewModel request)
         {
+
             var model = GetCheckoutViewModel();
             var orderDetails = new List<OrderDetailVm>();
             foreach (var item in model.CartItems)
             {
                 orderDetails.Add(new OrderDetailVm()
                 {
+
                     ProductId = item.ProductId,
                     Quantity = item.Quantity
                 });
@@ -51,11 +56,9 @@ namespace eShopSolution.WebApp.Controllers
                 Email = request.CheckoutModel.Email,
                 PhoneNumber = request.CheckoutModel.PhoneNumber,
                 OrderDetails = orderDetails
+
             };
             
-
-
-
             //TODO: Add to API
             TempData["SuccessMsg"] = "Order puschased successful";
             return View(model);
@@ -98,7 +101,7 @@ namespace eShopSolution.WebApp.Controllers
 
             currentCart.Add(cartItem);
 
-            
+
             HttpContext.Session.SetString(SystemConstants.CartSession, JsonConvert.SerializeObject(currentCart));
             return Ok(currentCart);
         }
@@ -140,39 +143,6 @@ namespace eShopSolution.WebApp.Controllers
             };
             return checkoutVm;
         }
-
-        //public int CreateOrder(Order order)
-        //{
-        //    decimal orderTotal = 0;
-
-        //    var cartItems = GetCartItems();
-        //    // Iterate over the items in the cart, 
-        //    // adding the order details for each
-        //    foreach (var item in cartItems)
-        //    {
-        //        var orderDetail = new OrderDetail
-        //        {
-        //            AlbumId = item.AlbumId,
-        //            OrderId = order.OrderId,
-        //            UnitPrice = item.Album.Price,     
-        //            Quantity = item.Count
-        //        };
-        //        // Set the order total of the shopping cart
-        //        orderTotal += (item.Count * item.Album.Price);
-
-        //        storeDB.OrderDetails.Add(orderDetail);
-
-        //    }
-        //    // Set the order's total to the orderTotal count
-        //    order.Total = orderTotal;
-
-        //    // Save the order
-        //    storeDB.SaveChanges();
-        //    // Empty the shopping cart
-        //    EmptyCart();
-        //    // Return the OrderId as the confirmation number
-        //    return order.OrderId;
-        //}
 
 
     }

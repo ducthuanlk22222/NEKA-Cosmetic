@@ -18,7 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace eShopSolution.WebApp.Controllers
 {
-    public class AccountController : BaseController
+    public class AccountController : Controller
     {
         private readonly IUserApiClient _userApiClient;
         private readonly IConfiguration _configuration;

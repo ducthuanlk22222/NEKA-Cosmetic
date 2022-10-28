@@ -1,6 +1,9 @@
 ﻿using eShopSolution.Data.Enums;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace eShopSolution.Data.Entities
@@ -16,6 +19,9 @@ namespace eShopSolution.Data.Entities
         public string ShipPhoneNumber { set; get; }
         public OrderStatus Status { set; get; }
 
+        [StringLength(128)]
+        [Column(TypeName = "nvarchar")]
+        public string CustomerId { set; get; }
         public List<OrderDetail> OrderDetails { get; set; }
 
         public AppUser AppUser { get; set; }

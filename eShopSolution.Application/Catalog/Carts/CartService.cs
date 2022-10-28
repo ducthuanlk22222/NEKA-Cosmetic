@@ -8,6 +8,7 @@ using eShopSolution.ViewModels.Catalog.ProductImages;
 using eShopSolution.ViewModels.Catalog.Products;
 using eShopSolution.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,28 +24,32 @@ namespace eShopSolution.Application.Catalog.Carts
         private readonly EShopDbContext _context;
         private readonly IStorageService _storageService;
         private const string USER_CONTENT_FOLDER_NAME = "user-content";
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContext;
+        private readonly UserManager<AppUser> _userManager;
 
-        public CartService(EShopDbContext context, IStorageService storageService, IHttpContextAccessor httpContextAccessor)
+        public CartService(EShopDbContext context,
+            IStorageService storageService,
+            IHttpContextAccessor httpContext,
+            UserManager<AppUser> userManager)
         {
-            _httpContextAccessor = httpContextAccessor; 
+            _httpContext = httpContext;
             _context = context;
             _storageService = storageService;
+            _userManager = userManager;
         }
 
         public async Task<int> Create(CartCreateRequest request)
         {
-            var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-            var product = _context.ProductTranslations.Where(x => request.Product.Contains(x.Id)).Select(x=>x.Id).ToList();
-            var producta = _context.ProductInCarts.Where(x => product.Contains(x.ProductId)).ToList();
+            var userId = _httpContext.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+            //var product = _context.ProductTranslations.Where(x => request.Product.Contains(x.Id)).Select(x=>x.Id).ToList();
+            //var producta = _context.ProductInCarts.Where(x => product.Contains(x.ProductId)).ToList();
             var cart = new Cart()
             {
-                Price = request.Price,
+                //Price = request.Price,
                 Quantity = request.Quantity,
                 DateCreated = DateTime.Now,
-                UserId = new Guid(userId),
-                ProductInCarts= producta
+                UserId = new Guid(userId)
+                //ProductInCarts= producta
             };
 
             _context.Carts.Add(cart);
@@ -62,39 +67,20 @@ namespace eShopSolution.Application.Catalog.Carts
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<ApiResult<bool>> CategoryAssign(int id, CartAssignRequest request)
+        public async Task<ApiResult<bool>> CartAssign(Guid id, CartAssignRequest request)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            var userId = await _context.Users.FindAsync(id);
+            if (userId == null)
             {
                 return new ApiErrorResult<bool>($"Giỏ hàng với id {id} không tồn tại");
             }
-            foreach (var product in request.Products)
-            {
-                var productInCart = await _context.ProductInCarts
-                    .FirstOrDefaultAsync(x => x.ProductId == int.Parse(product.Id)
-                    && x.ProductId == id);
-                if (productInCart != null && product.Selected == false)
-                {
-                    _context.ProductInCarts.Remove(productInCart);
-                }
-                else if (productInCart == null && product.Selected)
-                {
-                    await _context.ProductInCarts.AddAsync(new ProductInCart()
-                    {
-                        CartId = id,
-                        ProductId = id
-                    });
-                }
-            }
-            await _context.SaveChangesAsync();
-            return new ApiSuccessResult<bool>();
+            return new ApiErrorResult<bool>();
         }
         public async Task<PagedResult<CartVm>> GetAllPaging(GetCartPagingRequest request)
         {
             //1. Select join
             var query = from c in _context.Carts
-                        join ct in _context.ProductInCarts on c.Id equals ct.CartId 
+                        join ct in _context.ProductInCarts on c.Id equals ct.CartId
                         join cu in _context.ProductInCarts on c.Id equals cu.ProductId
                         select new { c, ct, cu };
 
