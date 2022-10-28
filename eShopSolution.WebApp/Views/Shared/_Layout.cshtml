@@ -20,7 +20,7 @@
 
     <link rel="stylesheet" href="~/css/aos.css">
 
-    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/style.css">
 
 </head>
 <body>
@@ -35,7 +35,7 @@
 
                         <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left d-flex flex-row align-item-center">
                             <language-nav cookie-handler-url="@Url.Action("SetCultureCookie", "Home",
-                                                        new {area="", cltr="{0}", returnUrl="{1}"})" style="margin:auto">
+                                                        new {area="", cltr="{0}", returnUrl="{1}"})" class="d-none d-xl-block" style="margin: auto;">
 
                             </language-nav>
                             <form action="" class="site-block-top-search">
@@ -44,9 +44,16 @@
                             </form>
                         </div>
 
-                        <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+                        <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center d-flex justify-content-between justify-content-xl-center">
+                           
                             <div class="site-logo">
                                 <a href="index.html" class="~/js-logo-clone">Shoppers</a>
+                            </div>
+                            <div class="dropdown-mobile d-xl-none m-auto">
+                                <language-nav cookie-handler-url="@Url.Action("SetCultureCookie", "Home",
+                                                        new {area="", cltr="{0}", returnUrl="{1}"})" style="margin:auto">
+
+                                </language-nav>
                             </div>
                         </div>
 
@@ -54,11 +61,11 @@
                             <div class="site-top-icons">
                                 <ul>
                                    @if(User.Identity.IsAuthenticated){
-                                        <li class="has-children dropdown-toggle">
-                                            <a><span class="icon icon-person"></span></a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Your Profile</a></li>
-                                                <li>
+                                        <li>
+                                            <button class="btn btn-link" ><span class="icon icon-person"></span></button>
+                                            <ul class="">
+                                                <li class="dropdown-item"><a href="#">Your Profile</a></li>
+                                                <li class="dropdown-item">
                                                     <form action="/@culture/Account/Logout" id="logoutForm" method="post">
                                                         <button type="submit" style="all:unset; cursor: pointer" >Logout</button>
                                                     </form>
@@ -67,8 +74,7 @@
                                         </li>
 
                                    }else {
-                                        <li><a asp-controller="Account" asp-action="Login"><span class="icon icon-person"></span></a></li>
-
+                                        <li><a href="/@culture/Account/Login"><span class="icon icon-person"></span></a></li>
                                    }
                                     <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                                     <li>
