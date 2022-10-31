@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+    <comment>_Layout</comment>
+  </data>
   <data name="Add to" xml:space="preserve">
     <value>Add to</value>
     <comment>Common</comment>
@@ -133,6 +137,10 @@
     <value>Contact</value>
     <comment>Layouts</comment>
   </data>
+  <data name="Customer Support" xml:space="preserve">
+    <value>Customer Support</value>
+    <comment>/Home/Index</comment>
+  </data>
   <data name="Delivery" xml:space="preserve">
     <value>Delivery</value>
     <comment>Layouts</comment>
@@ -143,6 +151,14 @@
   </data>
   <data name="Featured Products" xml:space="preserve">
     <value>Featured Products</value>
+    <comment>/Home/Index</comment>
+  </data>
+  <data name="Free Returns" xml:space="preserve">
+    <value>Free Returns</value>
+    <comment>/Home/Index</comment>
+  </data>
+  <data name="Free Shipping" xml:space="preserve">
+    <value>Free Shipping</value>
     <comment>/Home/Index</comment>
   </data>
   <data name="Home" xml:space="preserve">
@@ -169,6 +185,18 @@
     <value>Page</value>
     <comment>Common</comment>
   </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+    <comment>/Cart/Index</comment>
+  </data>
+  <data name="Proceed To Checkout" xml:space="preserve">
+    <value>Proceed To Checkout</value>
+    <comment>/Cart/Index</comment>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+    <comment>_Layout</comment>
+  </data>
   <data name="Product Details" xml:space="preserve">
     <value>Product Details</value>
     <comment>/Product/Detail</comment>
@@ -181,9 +209,21 @@
     <value>products</value>
     <comment>Layouts</comment>
   </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
+    <comment>/Cart/Index</comment>
+  </data>
   <data name="Related Products" xml:space="preserve">
     <value>Related Products</value>
     <comment>/Product/Detail</comment>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+    <comment>/Cart/Index</comment>
+  </data>
+  <data name="Shop All" xml:space="preserve">
+    <value>Shop All</value>
+    <comment>/Product/Index</comment>
   </data>
   <data name="Sort By" xml:space="preserve">
     <value>Sort By</value>
@@ -192,6 +232,10 @@
   <data name="Specials Offer" xml:space="preserve">
     <value>Specials Offer</value>
     <comment>Layouts</comment>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+    <comment>/Cart/Index</comment>
   </data>
   <data name="Vietnamese" xml:space="preserve">
     <value>Vietnamese</value>
@@ -204,5 +248,9 @@
   <data name="View details" xml:space="preserve">
     <value>View details</value>
     <comment>/Product/Category</comment>
+  </data>
+  <data name="We are Neka" xml:space="preserve">
+    <value>We are Neka</value>
+    <comment>/Account/Login</comment>
   </data>
 </root>

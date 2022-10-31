@@ -121,47 +121,47 @@
                             <div class="card-body p-md-5 mx-md-4">
                                 <form asp-action="Register" asp-controller="Account" method="post">
                                     <p>Register your account</p>
-                                    <div class="form-outline">
+                                    <div class="form-outline mb-4">
                                         <label for="FirstName">First Name <sup>*</sup></label>
                                         <input type="text" asp-for="FirstName" placeholder="First Name" class="form-control" name="FirstName" />
                                         <span asp-validation-for="FirstName" class="text-error"></span>
                                     </div>
 
-                                    <div class="form-outline ">
+                                    <div class="form-outline mb-4">
                                         <label for="LastName">Last Name <sup>*</sup></label>
 
                                         <input type="text" class="form-control"
                                                asp-for="LastName" placeholder="Last Name" name="LastName" />
                                     </div>
 
-                                    <div class="form-outline ">
+                                    <div class="form-outline mb-4">
                                         <label for="Email">Email <sup>*</sup></label>
 
                                         <input type="email" class="form-control"
                                                asp-for="Email" placeholder="Email" name="Email" />
                                     </div>
 
-                                    <div class="form-outline">
+                                    <div class="form-outline mb-4">
                                         <label for="UserName">Username <sup>*</sup></label>
 
                                         <input type="text" class="form-control"
                                                asp-for="UserName" placeholder="Username" name="UserName" />
                                     </div>
 
-                                    <div class="form-outline">
+                                    <div class="form-outline mb-4">
                                         <label for="Password">Password <sup>*</sup></label>
 
                                         <input type="password" class="form-control" name="Password" asp-for="Password" placeholder="Password" />
 
                                     </div>
 
-                                    <div class="form-outline">
+                                    <div class="form-outline mb-4">
                                         <label for="ConfirmPassword">Confirm Password <sup>*</sup></label>
 
                                         <input type="password" class="form-control" name="ConfirmPassword" asp-for="ConfirmPassword" placeholder="Confirm Password" />
 
                                     </div>
-                                    <div class="form-outline">
+                                    <div class="form-outline mb-4">
                                         <label for="PhoneNumber">Phone</label>
 
                                         <input type="text" class="form-control" name="PhoneNumber" asp-for="PhoneNumber" placeholder="Mobile Phone" />

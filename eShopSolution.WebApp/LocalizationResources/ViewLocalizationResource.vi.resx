@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Về chúng tôi</value>
+    <comment>_Layout</comment>
+  </data>
   <data name="Add to" xml:space="preserve">
     <value>Thêm vào</value>
     <comment>Common</comment>
@@ -133,6 +137,10 @@
     <value>Liên hệ</value>
     <comment>Layouts</comment>
   </data>
+  <data name="Customer Support" xml:space="preserve">
+    <value>Hỗ trợ khách hàng</value>
+    <comment>/Home/Index</comment>
+  </data>
   <data name="Delivery" xml:space="preserve">
     <value>Giao hàng</value>
     <comment>Layouts</comment>
@@ -143,6 +151,14 @@
   </data>
   <data name="Featured Products" xml:space="preserve">
     <value>Sản phẩm nổi bật</value>
+    <comment>/Home/Index</comment>
+  </data>
+  <data name="Free Returns" xml:space="preserve">
+    <value>Hoàn trả miễn phí</value>
+    <comment>/Home/Index</comment>
+  </data>
+  <data name="Free Shipping" xml:space="preserve">
+    <value>Miễn phí vận chuyển</value>
     <comment>/Home/Index</comment>
   </data>
   <data name="Home" xml:space="preserve">
@@ -169,6 +185,18 @@
     <value>Trang</value>
     <comment>Common</comment>
   </data>
+  <data name="Price" xml:space="preserve">
+    <value>Giá</value>
+    <comment>/Cart/Index</comment>
+  </data>
+  <data name="Proceed To Checkout" xml:space="preserve">
+    <value>Chuyển đến thanh toán</value>
+    <comment>/Cart/Index</comment>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Sản phẩm</value>
+    <comment>_Layout</comment>
+  </data>
   <data name="Product Details" xml:space="preserve">
     <value>Chi tiết sản phẩm</value>
     <comment>/Product/Detail</comment>
@@ -181,8 +209,20 @@
     <value>san-pham</value>
     <comment>Layouts</comment>
   </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Số lượng</value>
+    <comment>/Cart/Index</comment>
+  </data>
   <data name="Related Products" xml:space="preserve">
     <value>Sản phẩm liên quan</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Xóa</value>
+    <comment>/Cart/Index</comment>
+  </data>
+  <data name="Shop All" xml:space="preserve">
+    <value>Tất cả sản phẩm</value>
+    <comment>/Product/Index</comment>
   </data>
   <data name="Sort By" xml:space="preserve">
     <value>sắp xếp theo</value>
@@ -191,6 +231,10 @@
   <data name="Specials Offer" xml:space="preserve">
     <value>Khuyến mãi</value>
     <comment>Layouts</comment>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Tổng</value>
+    <comment>/Cart/Index</comment>
   </data>
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
@@ -203,5 +247,9 @@
   <data name="View details" xml:space="preserve">
     <value>Xem chi tiết</value>
     <comment>/Product/Category</comment>
+  </data>
+  <data name="We are Neka" xml:space="preserve">
+    <value>Chúng tôi là Neka</value>
+    <comment>/Account/Login</comment>
   </data>
 </root>
